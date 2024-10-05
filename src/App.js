@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
-const WeatherWidget = ({ city }) => {
+const WeatherWidget = ({ city, setTheme }) => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,6 +18,11 @@ const WeatherWidget = ({ city }) => {
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
         );
         setWeather(response.data);
+        
+        // Update the theme based on weather
+        const { main } = response.data.weather[0];
+        setTheme(main.toLowerCase());
+        
       } catch (err) {
         setError(err.message);
       } finally {
@@ -26,7 +31,7 @@ const WeatherWidget = ({ city }) => {
     };
 
     fetchWeather();
-  }, [city]);
+  }, [city, API_KEY, setTheme]);
 
   if (loading) {
     return <div className="loading">Loading...</div>;
@@ -60,6 +65,7 @@ const WeatherWidget = ({ city }) => {
 
 const App = () => {
   const [city, setCity] = useState('Nagpur');
+  const [theme, setTheme] = useState('clear');
   const [forecast, setForecast] = useState([]);
 
   const API_KEY = '8443b6140013067cca19f8c91bdf42ba';
@@ -71,24 +77,20 @@ const App = () => {
       );
       const forecastData = response.data.list;
 
-      // Create an object to hold unique dates
       const uniqueDates = {};
       const nextDaysForecast = [];
 
-      // Loop through the forecast data
       forecastData.forEach((f) => {
         const date = new Date(f.dt * 1000);
-        const dateString = date.toLocaleDateString(); // Get date string for uniqueness
-        const dayString = date.toLocaleDateString('en-US', { weekday: 'long' }); // Get day of the week
+        const dateString = date.toLocaleDateString();
+        const dayString = date.toLocaleDateString('en-US', { weekday: 'long' });
 
-        // Check if the date is already added to the uniqueDates object
         if (!uniqueDates[dateString]) {
-          uniqueDates[dateString] = true; // Mark this date as seen
-          nextDaysForecast.push({ ...f, day: dayString, fullDate: date.toLocaleDateString('en-US') }); // Push this forecast object to the array
+          uniqueDates[dateString] = true;
+          nextDaysForecast.push({ ...f, day: dayString, fullDate: dateString });
         }
       });
 
-      // Keep only the first 5 unique dates
       setForecast(nextDaysForecast.slice(0, 5));
     } catch (error) {
       console.error('Error fetching forecast:', error);
@@ -99,8 +101,18 @@ const App = () => {
     fetchForecast();
   }, [city]);
 
+  // Theme-based styles
+  const themeStyles = {
+    clear: { background: '#ffeb3b', color: '#333' },
+    clouds: { background: '#90caf9', color: '#333' },
+    rain: { background: '#2196f3', color: '#fff' },
+    snow: { background: '#90caf9', color: '#333' },
+  };
+
+  const selectedTheme = themeStyles[theme] || themeStyles['clear'];
+
   return (
-    <div className="App">
+    <div className="App" style={{ background: selectedTheme.background, color: selectedTheme.color }}>
       <div className="card">
         <h1>Weather App</h1>
         <input
@@ -109,7 +121,7 @@ const App = () => {
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter city"
         />
-        <WeatherWidget city={city} />
+        <WeatherWidget city={city} setTheme={setTheme} />
         <div className="forecast-cards">
           {forecast.map((f, index) => (
             <div key={index} className="forecast-card">
