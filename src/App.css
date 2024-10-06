@@ -15,64 +15,63 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
-  padding: 20px;
+  max-width: 900px; /* Reduced max-width */
+  padding: 10px; /* Less padding */
 }
 
 .card {
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  padding: 40px;
+  border-radius: 10px; /* Reduced border-radius */
+  padding: 20px; /* Less padding */
   width: 100%;
   text-align: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  margin-bottom: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+  transition: transform 0.2s, box-shadow 0.2s; /* Faster animation */
+  margin-bottom: 20px; /* Less margin */
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* Smaller hover effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .card h1 {
   color: #333;
-  margin-bottom: 20px;
-  font-size: 36px;
+  margin-bottom: 15px;
+  font-size: 28px; /* Smaller font size */
   font-weight: bold;
 }
 
 input {
-  padding: 12px;
+  padding: 10px;
   border-radius: 5px;
   border: none;
-  margin-bottom: 20px;
-  width: 260px;
+  margin-bottom: 15px;
+  width: 220px; /* Smaller input */
   text-align: center;
-  font-size: 18px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s, background-color 0.3s;
+  font-size: 16px; /* Reduced font size */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s, background-color 0.2s;
 }
 
 input:focus {
   outline: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   background-color: #f1f1f1;
 }
 
 .weather-widget {
-  margin-left: 350px;
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  padding: 40px;
+  border-radius: 10px;
+  padding: 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 300px; /* Reduced width */
   text-align: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  color:black;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  color: black;
+  margin-left: 280px;
 
-  /* Flex layout for centering content */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,69 +79,68 @@ input:focus {
 }
 
 .weather-widget:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .weather-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color:black;
 }
 
 .temperature {
-  font-size: 48px;
+  font-size: 36px; /* Reduced size */
   font-weight: 600;
-  margin: 10px 0;
+  margin: 8px 0;
 }
 
 .description {
-  font-size: 20px;
-  margin: 10px 0;
-  color: black;
+  font-size: 16px; /* Reduced size */
+  margin: 8px 0;
+  color:black;
 }
 
 .forecast-cards {
   display: flex;
-  justify-content: center; /* Center the cards */
-  gap: 20px;
-  margin-top: 20px;
+  justify-content: center;
+  gap: 10px; /* Reduced gap */
+  margin-top: 15px; /* Less margin */
   overflow-x: auto;
 }
 
 .forecast-card {
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  padding: 20px;
-  min-width: 120px;
+  border-radius: 10px;
+  padding: 15px;
+  min-width: 100px; /* Smaller cards */
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
   color: #333;
 }
 
 .forecast-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .forecast-card h4 {
-  margin-bottom: 10px;
-  font-size: 18px;
+  margin-bottom: 8px;
+  font-size: 16px; /* Smaller font size */
   font-weight: bold;
 }
 
 .forecast-card img {
-  width: 60px;
-  height: 60px;
+  width: 50px; /* Reduced image size */
+  height: 50px;
 }
 
 .forecast-card p {
-  margin: 5px 0;
+  margin: 4px 0;
 }
 
 .loading, .error {
-  font-size: 24px;
+  font-size: 20px; /* Reduced size */
   color: #fff;
 }
